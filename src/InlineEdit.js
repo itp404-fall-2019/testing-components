@@ -39,6 +39,16 @@ export default class InlineEdit extends React.Component {
     }
   }
   render() {
+    if (typeof this.props.children === 'function') {
+      return this.props.children(
+        this.state.editMode,
+        this.state.currentValue,
+        this.handleKeyUp,
+        this.handleChange,
+        this.enableEditMode
+      );
+    }
+
     if (this.state.editMode) {
       return (
         <input
