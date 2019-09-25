@@ -1,13 +1,18 @@
 import React from 'react';
 import './App.css';
 import RemainingCharacters from './RemainingCharacters';
+import InlineEdit from './InlineEdit';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      name: '',
+      title: 'Untitled Document'
     };
+  }
+  handleTitleUpdate = (newTitle) => {
+    this.setState({ title: newTitle });
   }
   handleChange = (event) => {
     this.setState({
@@ -17,6 +22,9 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
+        <InlineEdit value={this.state.title} onEnter={this.handleTitleUpdate} />
+        
+        {/* <br />
         <input value={this.state.name} onChange={this.handleChange} />
         <br />
         <div>
@@ -33,7 +41,7 @@ export default class App extends React.Component {
               );
             }
           }
-        </RemainingCharacters>
+        </RemainingCharacters> */}
       </div>
     );
   }
