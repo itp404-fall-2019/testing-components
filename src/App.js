@@ -19,7 +19,21 @@ export default class App extends React.Component {
       <div>
         <input value={this.state.name} onChange={this.handleChange} />
         <br />
-        <RemainingCharacters max={10} text={this.state.name} />
+        <div>
+          <RemainingCharacters max={10} text={this.state.name} />
+        </div>
+        <br />
+        <RemainingCharacters max={10} text={this.state.name}>
+          {
+            (remainingCharacters) => {
+              return (
+                <p className={remainingCharacters < 0 ? "danger" : undefined}>
+                  {remainingCharacters}
+                </p>
+              );
+            }
+          }
+        </RemainingCharacters>
       </div>
     );
   }
