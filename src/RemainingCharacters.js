@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function RemainingCharacters(props) {
   const { max, text, children } = props;
@@ -12,3 +13,8 @@ export default function RemainingCharacters(props) {
     );
   }
 }
+
+RemainingCharacters.propTypes = {
+  text: PropTypes.string.isRequired,
+  max: PropTypes.number.isRequired
+};
