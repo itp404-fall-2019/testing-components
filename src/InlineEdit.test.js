@@ -1,13 +1,17 @@
 import React from "react";
 import InlineEdit from "./InlineEdit";
 import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 
 it("renders the value as text and not an input", () => {
   const { getByTestId, queryByTestId } = render(
     <InlineEdit value={"Untitled Document"} onEnter={() => {}} />
   );
 
-  expect(getByTestId("inline-edit-text").textContent).toBe("Untitled Document");
+  // expect(getByTestId("inline-edit-text").textContent).toBe("Untitled Document");
+  expect(getByTestId("inline-edit-text")).toHaveTextContent(
+    "Untitled Document"
+  );
   expect(queryByTestId("inline-edit-input")).toBeFalsy();
 });
 
@@ -20,7 +24,8 @@ it("changes from text to an input when the text is clicked", () => {
   fireEvent.click(getByText("Untitled Document"));
 
   // assertions
-  expect(getByTestId("inline-edit-input").value).toBe("Untitled Document");
+  // expect(getByTestId("inline-edit-input").value).toBe("Untitled Document");
+  expect(getByTestId("inline-edit-input")).toHaveValue("Untitled Document");
   expect(queryByTestId("inline-edit-text")).toBeFalsy();
 });
 
